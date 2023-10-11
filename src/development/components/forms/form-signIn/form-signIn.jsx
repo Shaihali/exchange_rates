@@ -5,6 +5,7 @@ export function FormSignIn () {
   const {
     userName,
     userPassword,
+    wrongEntry,
     handleNameField,
     handlePasswordField,
     handleLogin,
@@ -22,6 +23,7 @@ export function FormSignIn () {
           <label htmlFor="password" className={form.label}>Password</label>
           <input type="password" id="password" placeholder="Введите пароль" className={form.input} onChange={(event) => handlePasswordField(event)}></input>
       </div>
+      <div className={form.announcement}>{wrongEntry}</div>
       <button className={form.button} onClick={(event) => handleLogin(event, userName, userPassword)}>Sign in</button>
     </>
   );

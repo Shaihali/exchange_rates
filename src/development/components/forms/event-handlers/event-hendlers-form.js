@@ -11,6 +11,7 @@ export function useEventHendlersForm() {
   const [userName, setUserName] = useState('');
   const [userPassword, setUserPassword] = useState('');
   const [userEmail, setUserEmail] = useState('');
+  const [wrongEntry, setWrongEntry] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const signUp = useRef(null);
@@ -41,6 +42,8 @@ export function useEventHendlersForm() {
       navigate(`/users/${idUser + 1}`);
       const symbols = await getSymbols();
       dispatch(symbolsAction(symbols.symbols))
+    } else {
+      setWrongEntry('wrong login or password')
     }
   };
   const handleClickSigup = (event) => {
@@ -67,13 +70,14 @@ export function useEventHendlersForm() {
       navigate('/login')
     }
   }
-
+  
   return {
     userName,
     userPassword,
     userEmail,
     signUp,
     signIn,
+    wrongEntry,
     handleRegister,
     handleNameField,
     handlePasswordField,

@@ -27,10 +27,6 @@
   leading-6
  text-gray-900
 }
-.label_checkbox {
-  @apply
-  font-medium
-}
 .input {
   @apply
   block
@@ -51,9 +47,7 @@
   sm:leading-6
   outline-none
 }
-.input_checkbox {
-  margin-right: 6px;
-}
+
 .button {
   @apply
   flex w-full 
@@ -73,4 +67,8 @@
   focus-visible:outline-offset-2
   focus-visible:outline-indigo-600
   mt-auto
+}
+
+.announcement {
+  color: red;
 }

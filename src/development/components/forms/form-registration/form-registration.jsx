@@ -29,10 +29,6 @@ export function FormRegistration() {
             <label htmlFor="password" className={form.label}>Password</label>
             <input type="password" id="password" placeholder="Введите пароль" className={form.input} onChange={(event) => handlePasswordField(event)}></input>
           </div>
-          <div className={form.form_item}>
-            <input type="checkbox" id="exampleCheck1" className={form.input_checkbox}></input>
-            <label htmlFor="exampleCheck1" className={form.label_checkbox}>Remember me</label>
-          </div>
           <button className={form.button} onClick={(event) => handleRegister(event, userName, userEmail, userPassword)}>Create Account</button>
         </>
   );
