@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+.header_box {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Lobster', cursive;
+}
+.user {
+  display: none;
+  @apply
+  sm:flex items-center
+}
+.user_name {
+  @apply
+  sm:text-xl
+  sm:leading-6;
+  margin: 0 30px 0 6px;
+}
+.user_exit {
+  background-image: url('../../assets/icons/exit.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+}
+.user_icon {
+  background-image: url('../../assets/icons/userin.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 45px;
+  height: 40px;
+}

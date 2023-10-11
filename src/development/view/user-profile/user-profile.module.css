@@ -1,0 +1,7 @@
+.box {
+  max-width: auto;
+  opacity: 0.8;
+  background-color: aliceblue;
+  @apply
+  sm:max-w-sm
+}

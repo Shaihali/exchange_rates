@@ -1,0 +1,16 @@
+.burger {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  width: 44px;
+  position: relative;
+  z-index: 2;
+  @apply
+  sm:hidden
+}
+.burger_item {
+  width: 100%;
+  border: 2px solid #000;
+  border-left-width: 0;
+  border-right-width: 0;
+}

@@ -1,0 +1,26 @@
+.menu {
+  display: flex;
+  opacity: 0;
+  flex-direction: column;
+  transform: translateX(200%);
+  width: 300px;
+  height: 500px;
+  background-color: #fff;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  transition: all 0.3s ease;
+  @apply
+  sm:hidden
+}
+.menu_open {
+  opacity: 1;
+  transform: translateX(0);
+}
+.item {
+  color: #000;
+}
+.button {
+  color: #000;
+}

@@ -1,0 +1,9 @@
+.marquee {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.marquee span {
+  display: inline-block;
+  margin-right: 20px; /* Добавьте отступ между элементами */
+}

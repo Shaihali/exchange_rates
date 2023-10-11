@@ -1,0 +1,9 @@
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px;
+}
+.header {
+  background-color: #4f46e5;
+  color: #fff;
+}

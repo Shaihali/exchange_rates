@@ -1,0 +1,24 @@
+.form_box {
+  @apply
+  flex
+  flex-col
+  max-w-sm
+  mx-auto
+  translate-y-1/4
+  p-6
+  border rounded-lg
+  bg-white;
+  height: 550px;
+};
+.button_box {
+  display: flex;
+  column-gap: 24px;
+}
+.sign_in,
+.sign_up {
+  padding-bottom: 4px;
+}
+.sign_activ {
+  border-bottom: 2px solid #4f46e5;
+  font-size: 18px;
+}
