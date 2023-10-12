@@ -36,7 +36,7 @@ export function Treadmill() {
     return () => {
       cancelAnimationFrame(marqueeAnimation);
     };
-  }, []);
+  }, [state]);
 
   return (
     <div className={treadmill.marquee} ref={marqueeRef}>

@@ -5,9 +5,9 @@ export const symbolsReducer = (state = defaultState, action) => {
     case 'SUCCESS':
       return {
         ...state,
-        symbols: action.payload,
+        ...action.payload,
       };
       default:
-      return state;
+        return state;
   } 
 }

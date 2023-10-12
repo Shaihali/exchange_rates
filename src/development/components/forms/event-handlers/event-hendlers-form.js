@@ -26,6 +26,7 @@ export function useEventHendlersForm() {
     navigate(`/users/${idUser}`);
     if (!isSymbol) {
       const symbols = await getSymbols();
+      console.log(symbols.symbols)
       dispatch(symbolsAction(symbols.symbols))
     }
   };
@@ -48,6 +49,7 @@ export function useEventHendlersForm() {
       navigate(`/users/${idUser + 1}`);
       if (!isSymbol) {
         const symbols = await getSymbols();
+        console.log(symbols.symbols)
         dispatch(symbolsAction(symbols.symbols))
       }
     } else {
