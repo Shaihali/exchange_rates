@@ -8,6 +8,7 @@ export const useHandleClickConvert = () => {
   const [convertFromValue, setConvertFromValue] = useState('USD');
   const [dataConvert, setDataConvert] = useState(storageResult);
   const [signal, setSignal] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleChangeAmountField = (event) => {
     const value = event.target.value;
@@ -23,8 +24,14 @@ export const useHandleClickConvert = () => {
   };
   const handleClickConvert = async (event) => {
     event.preventDefault();
-    const data = await getConvert(convertToValue, convertFromValue, amountValue);
-    setDataConvert(data);
+    setLoading(true);
+
+    try {
+      const data = await getConvert(convertToValue, convertFromValue, amountValue);
+      setDataConvert(data);
+    } finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
@@ -53,6 +60,7 @@ export const useHandleClickConvert = () => {
     convertToValue,
     convertFromValue,
     dataConvert,
-    signal
+    signal,
+    loading
   }
 }

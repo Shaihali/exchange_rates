@@ -1,7 +1,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  row-gap: 8px;
+  row-gap: 20px;
   align-items: center;
   @apply
   sm:flex-row
@@ -9,12 +9,15 @@
   
 }
 .convert_box {
-  max-width: 250px;
+  max-width: 500px;
+  min-height: 500px;
   margin: 0 auto;
   background-color: #dfdfdf;
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
+  padding: 15px;
   @apply
   sm:max-w-3xl
   sm:block

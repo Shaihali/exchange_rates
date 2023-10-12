@@ -1,0 +1,29 @@
+.box {
+  display: flex;
+  column-gap: 5px;
+  justify-content: center;
+  width: 100%;
+} 
+.dot {
+  animation: dotAnimation 1.5s infinite;
+  font-size: 70px;
+}
+
+.dot1 {
+  animation-delay: 0.2s;
+}
+.dot2 {
+  animation-delay: 0.4s;
+}
+
+@keyframes dotAnimation {
+  0% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
