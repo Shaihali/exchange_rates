@@ -18,11 +18,16 @@ export function useEventHendlersForm() {
   const signIn = useRef(null);
   const users = useSelector((state) => state.user.users)
   
-  const handleRegister = (event, userName, userEmail, userPassword) => {
+  const handleRegister = async (event, userName, userEmail, userPassword) => {
+    const isSymbol = localStorage.getItem('symbols');
     const idUser = users.length + 1;
     event.preventDefault();
     dispatch(registerUserAction(userName, userEmail, userPassword));
     navigate(`/users/${idUser}`);
+    if (!isSymbol) {
+      const symbols = await getSymbols();
+      dispatch(symbolsAction(symbols.symbols))
+    }
   };
   const handleNameField = (event) => {
   setUserName(event.target.value)
@@ -38,10 +43,13 @@ export function useEventHendlersForm() {
     dispatch(loginUserAction(username, password));
     const idUser = users.findIndex((user) => user.username === username && user.password === password);
     const userExists = users.some((user) => user.username === username && user.password === password);
+    const isSymbol = localStorage.getItem('symbols');
     if (userExists) {
       navigate(`/users/${idUser + 1}`);
-      const symbols = await getSymbols();
-      dispatch(symbolsAction(symbols.symbols))
+      if (!isSymbol) {
+        const symbols = await getSymbols();
+        dispatch(symbolsAction(symbols.symbols))
+      }
     } else {
       setWrongEntry('wrong login or password')
     }
