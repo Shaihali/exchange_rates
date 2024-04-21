@@ -12,7 +12,12 @@ export const CameraComponent = () => {
 
   return (
     <div>
-      <Webcam audio={false} ref={webcamRef} screenshotFormat="image/jpeg" />
+      <Webcam
+        audio={false}
+        ref={webcamRef}
+        screenshotFormat="image/jpeg"
+        videoSource="environment"
+      />
       <button onClick={capture}>Сделать фото</button>
     </div>
   );
