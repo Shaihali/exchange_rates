@@ -3,8 +3,9 @@ import convert from "./convert.module.css";
 import form from "../../../components/forms/form.module.css";
 import { useHandleClickConvert } from "./convert.logic";
 import { Loading } from "../../../components/loading/loading";
-import { CameraComponent } from "../../../components/camera/Camera";
 import Camera2 from "../../../components/camera/Camera2";
+import CameraTextRecognition from "../../../components/camera/TextDetected";
+import CameraTextReader from "../../../components/camera/TextDetected";
 
 export function Convert() {
   const state = useSelector((state) => state.symbols);
@@ -94,7 +95,8 @@ export function Convert() {
         )}
       </div>
       {/* <CameraComponent /> */}
-      <Camera2 />
+      {/* <Camera2 /> */}
+      <CameraTextReader />
     </div>
   );
 }
