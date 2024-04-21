@@ -166,6 +166,7 @@ const CameraTextReader = () => {
   const [capturing, setCapturing] = useState(false);
   const [capturedText, setCapturedText] = useState("");
   const [hoveredText, setHoveredText] = useState("");
+  const [highlightPosition, setHighlightPosition] = useState(null);
 
   const startCapture = () => {
     setCapturing(true);
@@ -188,7 +189,7 @@ const CameraTextReader = () => {
     try {
       const {
         data: { text },
-      } = await Tesseract.recognize(imageSrc, "eng", {
+      } = await Tesseract.recognize(imageSrc, ["eng", "rus"], {
         logger: (m) => console.log(m),
       });
       return text;
@@ -197,17 +198,6 @@ const CameraTextReader = () => {
       return "";
     }
   };
-
-  // const handleCaptureText = () => {
-  //   const imageSrc = webcamRef.current.getScreenshot();
-  //   Tesseract.recognize(imageSrc, "eng", { logger: (m) => console.log(m) })
-  //     .then(({ data: { text } }) => {
-  //       setHoveredText(text);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error while recognizing text:", error);
-  //     });
-  // };
 
   const handleTouchStart = (event) => {
     const x = event.touches[0].clientX;
@@ -219,7 +209,7 @@ const CameraTextReader = () => {
     const canvas = webcamRef.current.getCanvas();
     const ctx = canvas.getContext("2d");
 
-    // Get the color of the pixel at the tapped position
+    // Get the color of the pixel at the touched position
     const pixel = ctx.getImageData(x, y, 1, 1).data;
 
     // Check if the pixel color is close to black (indicating text)
@@ -227,13 +217,15 @@ const CameraTextReader = () => {
       const imageSrc = webcamRef.current.getScreenshot();
       const text = await recognizeText(imageSrc);
       setHoveredText(text);
+      setHighlightPosition({ x, y });
     } else {
       setHoveredText(""); // Reset the text if not tapping over text
+      setHighlightPosition(null);
     }
   };
 
   return (
-    <div>
+    <div style={{ position: "relative" }}>
       <Webcam
         audio={false}
         ref={webcamRef}
@@ -245,6 +237,19 @@ const CameraTextReader = () => {
         }}
         onTouchStart={handleTouchStart} // Call handleTouchStart on touch start
       />
+      {highlightPosition && (
+        <div
+          style={{
+            position: "absolute",
+            left: highlightPosition.x - 50, // Adjust as needed
+            top: highlightPosition.y - 50, // Adjust as needed
+            width: 100, // Adjust as needed
+            height: 100, // Adjust as needed
+            border: "2px solid red",
+            pointerEvents: "none", // Make it ignore touch events
+          }}
+        />
+      )}
       <br />
       <button onClick={startCapture} disabled={capturing}>
         Start Capturing
