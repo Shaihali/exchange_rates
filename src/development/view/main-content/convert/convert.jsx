@@ -4,6 +4,7 @@ import form from "../../../components/forms/form.module.css";
 import { useHandleClickConvert } from "./convert.logic";
 import { Loading } from "../../../components/loading/loading";
 import { CameraComponent } from "../../../components/camera/Camera";
+import Camera2 from "../../../components/camera/Camera2";
 
 export function Convert() {
   const state = useSelector((state) => state.symbols);
@@ -92,7 +93,8 @@ export function Convert() {
           </>
         )}
       </div>
-      <CameraComponent />
+      {/* <CameraComponent /> */}
+      <Camera2 />
     </div>
   );
 }
