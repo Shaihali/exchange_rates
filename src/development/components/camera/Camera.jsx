@@ -16,7 +16,7 @@ export const CameraComponent = () => {
         audio={false}
         ref={webcamRef}
         screenshotFormat="image/jpeg"
-        videoSource="environment"
+        videoConstraints={{ facingMode: "environment" }}
       />
       <button onClick={capture}>Сделать фото</button>
     </div>
