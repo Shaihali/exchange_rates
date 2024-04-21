@@ -157,7 +157,7 @@
 
 // export default CameraTextReader;
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Webcam from "react-webcam";
 import Tesseract from "tesseract.js";
 
@@ -167,6 +167,14 @@ const CameraTextReader = () => {
   const [capturedText, setCapturedText] = useState("");
   const [hoveredText, setHoveredText] = useState("");
   const [highlightPosition, setHighlightPosition] = useState(null);
+  const [videoWidth, setVideoWidth] = useState(0);
+  const [videoHeight, setVideoHeight] = useState(0);
+
+  useEffect(() => {
+    const videoElement = webcamRef.current.video;
+    setVideoWidth(videoElement.videoWidth);
+    setVideoHeight(videoElement.videoHeight);
+  }, []);
 
   const startCapture = () => {
     setCapturing(true);
@@ -189,7 +197,7 @@ const CameraTextReader = () => {
     try {
       const {
         data: { text },
-      } = await Tesseract.recognize(imageSrc, ["eng", "rus"], {
+      } = await Tesseract.recognize(imageSrc, "eng", {
         logger: (m) => console.log(m),
       });
       return text;
@@ -217,7 +225,13 @@ const CameraTextReader = () => {
       const imageSrc = webcamRef.current.getScreenshot();
       const text = await recognizeText(imageSrc);
       setHoveredText(text);
-      setHighlightPosition({ x, y });
+
+      // Limit the position of the highlight square within the video stream area
+      const maxX = videoWidth - 100; // Adjust the square size (100x100)
+      const maxY = videoHeight - 100; // Adjust the square size (100x100)
+      const clampedX = Math.min(Math.max(x - 50, 0), maxX);
+      const clampedY = Math.min(Math.max(y - 50, 0), maxY);
+      setHighlightPosition({ x: clampedX, y: clampedY });
     } else {
       setHoveredText(""); // Reset the text if not tapping over text
       setHighlightPosition(null);
@@ -241,8 +255,8 @@ const CameraTextReader = () => {
         <div
           style={{
             position: "absolute",
-            left: highlightPosition.x - 50, // Adjust as needed
-            top: highlightPosition.y - 50, // Adjust as needed
+            left: highlightPosition.x,
+            top: highlightPosition.y,
             width: 100, // Adjust as needed
             height: 100, // Adjust as needed
             border: "2px solid red",
